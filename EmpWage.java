@@ -1,15 +1,15 @@
 package com.fellowship;
 
 public class EmpWage {
+	// constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
-	public static final int EMP_RATE_PER_HOUR = 20;
-	public static final int NUM_OF_WORKING_DAYS = 20;
-	public static final int MAX_HRS_IN_MONTH = 100;
 
-	public static int computeEmpWage() {
-		int empWage = 0, totalEmpWage = 0, empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-		while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
+	public static int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+		// variable
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+		// computation
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
 			totalWorkingDays++;
 			double empCheck = Math.floor(Math.random() * 10) % 3;
 			switch ((int) empCheck) {
@@ -26,13 +26,14 @@ public class EmpWage {
 			totalEmpHrs += empHrs;
 			System.out.println("Day#: " + totalWorkingDays + "EmpHrs: " + empHrs);
 		}
-		totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+		int totalEmpWage = totalEmpHrs * empRatePerHour;
 		System.out.println("Total Emp Wage: " + totalEmpWage);
 		return totalEmpWage;
 	}
 
 	public static void main(String[] args) {
-		computeEmpWage();
+		computeEmpWage("Dmart", 20, 2, 10);
+		computeEmpWage("Reliance", 10, 6, 20);
 
 	}
 }
